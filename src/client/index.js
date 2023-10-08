@@ -1,18 +1,24 @@
 import { SingleBar, Presets } from "cli-progress";
 import WebTorrent from "webtorrent";
-import { error, formatETA, formatSize, formatSpeed, getDisplayFormat, isValidMagnetURL, log } from "../utils/index.js";
 
+import { LOGGER , LOADERS, FORMATTERS, VALIDATORS } from '../utils/index.js';
+
+const { log, error } = LOGGER;
+const { updateSpinner } = LOADERS;
+const { formatETA, formatSize, formatSpeed, getDisplayFormat } = FORMATTERS;
+const { isValidMagnetURL } = VALIDATORS;
 
 export const startDownload = (magnetURI) => {
 
     //EARLY EXIT
     if (!isValidMagnetURL(magnetURI)) return error('\nInvalid magnet URL !\nPlease update the link in server.js file.');
-    log('Initializing torrent client...\n')
+    let memoryRef = setInterval(()=>updateSpinner('Initializing torrent client & verifying data'),50);
     const client = new WebTorrent();
 
     // Add a torrent (replace with your magnet link)
     client.add(magnetURI, { path: './downloads' }, (torrent) => {
-        log('Torrent is downloading...\n');
+        clearInterval(memoryRef);
+        log('\n\nTorrent is downloading\n');
 
         const singleBar = new SingleBar({
             format: getDisplayFormat()
@@ -23,7 +29,7 @@ export const startDownload = (magnetURI) => {
 
         torrent.on('download', () => {
 
-            const { downloadSpeed, length, downloaded, progress } = torrent;
+            const { downloadSpeed, length, downloaded, progress, numPeers } = torrent;
 
             // Calculate remaining bytes
             const remaining = length - downloaded;
@@ -41,6 +47,7 @@ export const startDownload = (magnetURI) => {
                 have,
                 fullSize,
                 estimate,
+                numPeers,
                 speed
             });
 
