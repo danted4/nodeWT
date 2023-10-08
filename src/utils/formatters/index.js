@@ -18,7 +18,7 @@ export const formatETA = (seconds) => {
         return 'N/A';
     }
 
-    const minutes = Math.floor(seconds / 60);
+    const minutes = Math.floor(seconds / 60 / 1000);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);

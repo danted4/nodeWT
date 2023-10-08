@@ -12,6 +12,7 @@ export const startDownload = (magnetURI) => {
 
     //EARLY EXIT
     if (!isValidMagnetURL(magnetURI)) return error('\nInvalid magnet URL !\nPlease update the link in server.js file.');
+    log('\n');
     let memoryRef = setInterval(()=>updateSpinner('Initializing torrent client & verifying data'),50);
     const client = new WebTorrent();
 
@@ -29,17 +30,12 @@ export const startDownload = (magnetURI) => {
 
         torrent.on('download', () => {
 
-            const { downloadSpeed, length, downloaded, progress, numPeers } = torrent;
-
-            // Calculate remaining bytes
-            const remaining = length - downloaded;
-            // Calculate ETA in seconds
-            const eta = remaining / downloadSpeed;
+            const { timeRemaining, downloadSpeed, length, downloaded, progress, numPeers } = torrent;
 
             // formatted data
             const have = formatSize(downloaded);
             const fullSize = formatSize(length);
-            const estimate = formatETA(eta);
+            const estimate = formatETA(timeRemaining);
             const speed = formatSpeed(downloadSpeed);
 
             // Update the progress bar with progress, ETA, and speed
