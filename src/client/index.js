@@ -13,13 +13,13 @@ export const startDownload = (magnetURI) => {
     //EARLY EXIT
     if (!isValidMagnetURL(magnetURI)) return error('\nInvalid magnet URL !\nPlease update the link in server.js file.');
     log('\n');
-    let memoryRef = setInterval(()=>updateSpinner('Initializing torrent client & verifying data'),50);
+    let memoryRef = setInterval(()=>updateSpinner('Initializing torrent client & verifying data...'),50);
     const client = new WebTorrent();
 
     // Add a torrent (replace with your magnet link)
     client.add(magnetURI, { path: './downloads' }, (torrent) => {
         clearInterval(memoryRef);
-        log('\n\nTorrent is downloading\n');
+        log('\n\nTorrent is downloading...\n');
 
         const singleBar = new SingleBar({
             format: getDisplayFormat()
@@ -48,11 +48,13 @@ export const startDownload = (magnetURI) => {
             });
 
             // Check if the download is complete
-            (progress === 1) && log('\nTorrent download finished') && singleBar.stop();
+            if(progress === 1){
+                singleBar.stop();
+                log('\nTorrent download finished !');
+                process.exit(0);
+            }
 
         });
-
-        torrent.on('done', () => log('\nDone!'));
         torrent.on('error', (err) => error(err));
     });
 }

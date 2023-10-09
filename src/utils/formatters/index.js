@@ -10,15 +10,16 @@ export const getDisplayFormat = () => `Progress: [{bar}] {percentage}% | Downloa
 
 /**
  * formatETA - Function to format ETA in appropriate units (e.g., weeks, days, hours , minutes)
- * @param {number} seconds - estimated time in seconds
+ * @param {number} eta - estimated time in ms
  * @returns 
  */
-export const formatETA = (seconds) => {
-    if (isNaN(seconds) || seconds === Infinity) {
+export const formatETA = (eta) => {
+    if (isNaN(eta) || eta === Infinity) {
         return 'N/A';
     }
 
-    const minutes = Math.floor(seconds / 60 / 1000);
+    const seconds = Math.floor(eta / 1000);
+    const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     const weeks = Math.floor(days / 7);
@@ -43,7 +44,7 @@ export const formatETA = (seconds) => {
     if (minutes > 0) {
         return `${minutes} minute${minutes === 1 ? '' : 's'}`;
     }
-    return 'less than a minute';
+    return `${seconds} second${seconds === 1 ? '' : 's'}`;
 }
 
 
