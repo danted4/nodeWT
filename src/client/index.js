@@ -20,6 +20,7 @@ export const startDownload = (magnetURI) => {
     client.add(magnetURI, { path: './downloads' }, (torrent) => {
         clearInterval(memoryRef);
         log('\n\nTorrent is downloading...\n');
+        log('Progress\n');
 
         const singleBar = new SingleBar({
             format: getDisplayFormat()

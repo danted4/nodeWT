@@ -4,14 +4,13 @@
  * @param {void}
  * @returns {string}
  */
-export const getDisplayFormat = () => `Progress: [{bar}] {percentage}% | Downloaded: {have} / {fullSize} | ETA: {estimate} | Peers: {numPeers} | Speed: {speed}`;
-
+export const getDisplayFormat = () => `[{bar}] {percentage}% | Peers: {numPeers} | D: {have} @ {speed} | T: {fullSize} | ETA: {estimate}`;
 
 
 /**
  * formatETA - Function to format ETA in appropriate units (e.g., weeks, days, hours , minutes)
  * @param {number} eta - estimated time in ms
- * @returns 
+ * @returns {string}
  */
 export const formatETA = (eta) => {
     if (isNaN(eta) || eta === Infinity) {
@@ -51,33 +50,37 @@ export const formatETA = (eta) => {
 /**
  * formatSpeed - Function to format speed in appropriate units (e.g., KB/s, MB/s, GB/s)
  * @param {number} speed - speed in bytes/second
- * @returns 
+ * @returns {string}
  */
 export const formatSpeed = (speed) => {
-    if (speed < 1024) {
-        return `${speed.toFixed(2)} B/s`;
-    } else if (speed < 1024 * 1024) {
-        return `${(speed / 1024).toFixed(2)} KB/s`;
-    } else if (speed < 1024 * 1024 * 1024) {
-        return `${(speed / (1024 * 1024)).toFixed(2)} MB/s`;
-    } else {
-        return `${(speed / (1024 * 1024 * 1024)).toFixed(2)} GB/s`;
+    const speedLevel = Math.floor(Math.log(speed) / Math.log(1024));
+    switch (speedLevel) {
+        case 0:
+            return `${speed.toFixed(2)} B/s`;
+        case 1:
+            return `${(speed / 1024).toFixed(2)} KB/s`;
+        case 2:
+            return `${(speed / (1024 * 1024)).toFixed(2)} MB/s`;
+        default:
+            return `${(speed / (1024 * 1024 * 1024)).toFixed(2)} GB/s`;
     }
 }
 
 /**
  * formatSize - Function to format size in appropriate units (e.g., B, KB, MB, GB)
- * @param {number} size size in bytes
- * @returns 
+ * @param {number} size - size in bytes
+ * @returns {string}
  */
 export const formatSize = (size) => {
-    if (size < 1024) {
-        return `${size.toFixed(2)} B`;
-    } else if (size < 1024 * 1024) {
-        return `${(size / 1024).toFixed(2)} KB`;
-    } else if (size < 1024 * 1024 * 1024) {
-        return `${(size / (1024 * 1024)).toFixed(2)} MB`;
-    } else {
-        return `${(size / (1024 * 1024 * 1024)).toFixed(3)} GB`;
+    const sizeLevel = Math.floor(Math.log(size) / Math.log(1024));
+    switch (sizeLevel) {
+        case 0:
+            return `${size.toFixed(2)} B`;
+        case 1:
+            return `${(size / 1024).toFixed(2)} KB`;
+        case 2:
+            return `${(size / (1024 * 1024)).toFixed(3)} MB`;
+        default:
+            return `${(size / (1024 * 1024 * 1024)).toFixed(4)} GB`;
     }
 }
