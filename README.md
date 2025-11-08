@@ -63,57 +63,57 @@ A powerful, feature-rich Node.js CLI wrapper for WebTorrent with real-time progr
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                        server.js (Entry)                        │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  • Readline Interface for User Input                     │  │
-│  │  • Magnet URL Validation                                 │  │
-│  │  • Initiates Download Process                            │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  • Readline Interface for User Input                     │   │
+│  │  • Magnet URL Validation                                 │   │
+│  │  • Initiates Download Process                            │   │
+│  └──────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CLIENT MODULE (src/client)                   │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  WebTorrent Client Manager                               │  │
-│  │  • Initialize WebTorrent instance                        │  │
-│  │  • Add torrent from magnet URI                           │  │
-│  │  • Monitor download events                               │  │
-│  │  • Update progress bar                                   │  │
-│  │  • Handle completion/errors                              │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  WebTorrent Client Manager                               │   │
+│  │  • Initialize WebTorrent instance                        │   │
+│  │  • Add torrent from magnet URI                           │   │
+│  │  • Monitor download events                               │   │
+│  │  • Update progress bar                                   │   │
+│  │  • Handle completion/errors                              │   │
+│  └──────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                   UTILITIES MODULE (src/utils)                  │
 │                                                                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐        │
-│  │  FORMATTERS  │  │   LOADERS    │  │   LOGGER     │        │
-│  ├──────────────┤  ├──────────────┤  ├──────────────┤        │
-│  │ • formatETA  │  │ • Spinner    │  │ • log()      │        │
-│  │ • formatSize │  │   Animation  │  │ • error()    │        │
-│  │ • formatSpeed│  │ • Progress   │  │ • info()     │        │
-│  │ • getDisplay │  │   Indicator  │  │              │        │
-│  │   Format     │  │              │  │              │        │
-│  └──────────────┘  └──────────────┘  └──────────────┘        │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐           │
+│  │  FORMATTERS  │  │   LOADERS    │  │   LOGGER     │           │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤           │
+│  │ • formatETA  │  │ • Spinner    │  │ • log()      │           │
+│  │ • formatSize │  │   Animation  │  │ • error()    │           │
+│  │ • formatSpeed│  │ • Progress   │  │ • info()     │           │
+│  │ • getDisplay │  │   Indicator  │  │              │           │
+│  │   Format     │  │              │  │              │           │
+│  └──────────────┘  └──────────────┘  └──────────────┘           │
 │                                                                 │
-│  ┌──────────────┐                                              │
-│  │  VALIDATORS  │                                              │
-│  ├──────────────┤                                              │
-│  │ • isValid    │                                              │
-│  │   MagnetURL  │                                              │
-│  └──────────────┘                                              │
+│  ┌──────────────┐                                               │
+│  │  VALIDATORS  │                                               │
+│  ├──────────────┤                                               │
+│  │ • isValid    │                                               │
+│  │   MagnetURL  │                                               │ 
+│  └──────────────┘                                               │
 └─────────────────────────────────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                      WEBTORRENT LIBRARY                         │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │  • DHT (Distributed Hash Table)                          │  │
-│  │  • Peer Discovery & Connection                           │  │
-│  │  • Piece Management                                      │  │
-│  │  • File System Operations                                │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  • DHT (Distributed Hash Table)                          │   │
+│  │  • Peer Discovery & Connection                           │   │
+│  │  • Piece Management                                      │   │
+│  │  • File System Operations                                │   │
+│  └──────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                              ▼
@@ -535,7 +535,7 @@ If you encounter any issues or have questions:
 
 <div align="center">
 
-**Made with ❤️ by kanav**
+**Made with ❤️ by danted4**
 
 ⭐ Star this repo if you find it useful!
 
