@@ -386,34 +386,28 @@ Progress 100% → Stop Progress Bar → Log Success → Exit Process
 
 By default, files are downloaded to `./downloads`. To change this:
 
-<augment_code_snippet path="src/client/index.js" mode="EXCERPT">
 ````javascript
 client.add(magnetURI, { path: './downloads' }, (torrent) => {
     // Change './downloads' to your preferred path
 ````
-</augment_code_snippet>
 
 ### Progress Bar Format
 
 Customize the progress bar display:
 
-<augment_code_snippet path="src/utils/formatters/index.js" mode="EXCERPT">
 ````javascript
 export const getDisplayFormat = () => `[{bar}] {percentage}% | Peers: {numPeers} | D: {have} @ {speed} | T: {fullSize} | ETA: {estimate}`;
 ````
-</augment_code_snippet>
 
 ### Node.js Version
 
 The project requires Node.js 22+. This is enforced in `package.json`:
 
-<augment_code_snippet path="package.json" mode="EXCERPT">
 ````json
 "engines": {
   "node": ">=22.0.0"
 }
 ````
-</augment_code_snippet>
 
 ---
 
