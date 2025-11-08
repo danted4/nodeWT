@@ -342,34 +342,34 @@ Magnet URI → DHT Lookup → Peer Discovery → Establish Connections
                ▼
 ┌─────────────────────────────────────┐
 │  Extract Torrent Statistics:        │
-│  • downloaded (bytes)                │
-│  • length (total bytes)              │
-│  • downloadSpeed (bytes/sec)         │
-│  • timeRemaining (ms)                │
-│  • progress (0-1)                    │
-│  • numPeers (count)                  │
+│  • downloaded (bytes)               │
+│  • length (total bytes)             │
+│  • downloadSpeed (bytes/sec)        │
+│  • timeRemaining (ms)               │
+│  • progress (0-1)                   │
+│  • numPeers (count)                 │
 └──────────────┬──────────────────────┘
                │
                ▼
 ┌─────────────────────────────────────┐
-│  Format Data:                        │
-│  • formatSize(downloaded)            │
-│  • formatSize(length)                │
-│  • formatSpeed(downloadSpeed)        │
-│  • formatETA(timeRemaining)          │
+│  Format Data:                       │
+│  • formatSize(downloaded)           │
+│  • formatSize(length)               │
+│  • formatSpeed(downloadSpeed)       │
+│  • formatETA(timeRemaining)         │
 └──────────────┬──────────────────────┘
                │
                ▼
 ┌─────────────────────────────────────┐
-│  Update Progress Bar                 │
-│  (cli-progress library)              │
+│  Update Progress Bar                │
+│  (cli-progress library)             │
 └──────────────┬──────────────────────┘
                │
                ▼
 ┌─────────────────────────────────────┐
-│  Check if progress === 1             │
-│  Yes → Stop & Exit                   │
-│  No  → Wait for next event           │
+│  Check if progress === 1            │
+│  Yes → Stop & Exit                  │
+│  No  → Wait for next event          │
 └─────────────────────────────────────┘
 ```
 
